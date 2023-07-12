@@ -1,0 +1,64 @@
+extends layouts/default.pug
+
+block append head
+  title Masuk - Website RPS
+
+block body
+  .page.page-center
+    .container.container-normal.py-4
+      .row.align-items-center.g-4
+        .col-lg
+          .container-tight 
+            .text-center.mb-4
+              a(href="./index.pug").navbar-brand.navbar-brand-autodark
+                img(src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Gram.svg" alt="Logo Amikom" height="64") 
+
+            .card.card-md
+              .card-body
+                h2.h2.text-center.mb-4 Silahkan Masuk
+                form(action="./dashboard.html" method="get" autocomplete="off" novalidate)
+                  .mb-3
+                    label.form-label(for="identity") NIK atau Alamat Email
+                    input(type="text" placeholder="312xxxxxxxxxxx" autocomplete="off")#identity.form-control
+
+                  .mb-2 
+                    label(for="password").form-label Kata Sandi
+                    input(type="password" placeholder="Kata sandi" autocomplete="off")#password.form-control
+
+                  .mb-2
+                    label.form-check
+                      input(type="checkbox").form-check-input
+                      span.form-check-label Ingatkan saya di perangkat ini
+
+                  .form-footer
+                    button(type="submit").btn.btn-primary.w-100 Masuk
+
+              .hr-text atau 
+
+              .card-body 
+                .row 
+                  .col 
+                    a(href="./dashboard.pug").btn.w-100
+                      svg(
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon text-google"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      )
+                        path(
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        )
+                        path(
+                          d="M17.788 5.108a9 9 0 1 0 3.212 6.892h-8"
+                        )
+
+                      .
+                        Masuk menggunakan Google

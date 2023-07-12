@@ -1,0 +1,167 @@
+header.navbar.navbar-expand-md.d-print-none 
+  .container-xl
+    button(
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-menu"
+      aria-controls="navbar-menu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    ).navbar-toggler
+      span.navbar-toggler-icon
+
+    h1.navbar-brand.navbar-brand-autodark.d-none-navbar-horizontal.pe-0.pe-md-3
+      a(href="./index.pug")
+        img(
+          src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Alternative%20One%20Color%20-%20Black%20-%20Horizontal.svg"
+          alt="AMIKOM"
+          width="110"
+          height="32"
+        ).navbar-brand-image
+
+    .navbar-nav.flex-row.order-md-last
+      .nav-item.dropdown 
+        a(
+          href="#"
+          data-bs-toggle="dropdown"
+          aria-label="Open user menu"
+        ).nav-link.d-flex.lh-1.text-reset.p-0
+          span.avatar.avatar-sm A
+
+          .d-none.d-xl-block.ps-2
+            div Admin 
+            .mt-1.small.text-muted Administrator 
+
+        .dropdown-menu.dropdown-menu-end.dropdown-menu.arrow 
+          a(href="./profile.pug").dropdown-item Profile 
+
+          .dropdown-divider 
+
+          a(href="./settings.pug").dropdown-item Pengaturan 
+
+          a(href="./sign-in.pug").dropdown-item Keluar
+
+header.navbar-expand-md
+  #navbar-menu.collapse.navbar-collapse
+    .navbar 
+      .container-xl 
+        ul.navbar-nav 
+          li.nav-item 
+            a(href="./index.pug").nav-link
+              span.nav-link-icon.d-md-none.d-lg-inline-block
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M5 12l-2 0l9 -9l9 9l-2 0")
+                  path(d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7")
+                  path(d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6")
+
+              span.nav-link-title Beranda
+
+          li(class=`${pageId === "dosen" ? "active" : ""}`).nav-item
+            a(href="./dosen-index.pug").nav-link
+              span.nav-link-icon.d-md-none.d-lg-inline-block
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-users-group"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0")
+                  path(d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1")
+                  path(d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0")
+                  path(d="M17 10h2a2 2 0 0 1 2 2v1")
+                  path(d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0")
+                  path(d="M3 13v-1a2 2 0 0 1 2 -2h2")
+
+              span.nav-link-title Dosen
+
+          li(class=`${pageId === "semester" ? "active" : ""}`).nav-item 
+            a(href="./semester-index.pug").nav-link
+              span.nav-link-icon.d-md-none.d-lg-inline-block
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-calendar-time"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4")
+                  path(d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0")
+                  path(d="M15 3v4")
+                  path(d="M7 3v4")
+                  path(d="M3 11h16")
+                  path(d="M18 16.496v1.504l1 1")
+
+              span.nav-link-title Semester
+
+          li(class=`${pageId === "rps" ? "active" : ""}`).nav-item 
+            a(href="./rps-index.pug").nav-link
+              span.nav-link-icon.d-md-none.d-lg-inline-block
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-books"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M5 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z")
+                  path(d="M9 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z")
+                  path(d="M5 8h4")
+                  path(d="M9 16h4")
+                  path(d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z")
+                  path(d="M14 9l4 -1")
+                  path(d="M16 16l3.923 -.98")
+
+              span.nav-link-title RPS
+
+        .my-2.my-md-0.flex-grow-1.flex-md-grow-0.order-first.order-md-last 
+          form(action="./dashboard.html" method="get" autocomplete="off" novalidate).px-2
+            .input-icon 
+              span.input-icon-addon 
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0")
+                  path(d="M21 21l-6 -6")
+              
+              input(type="text" placeholder="Cari..." aria-label="Cari halaman").form-control
