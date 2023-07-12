@@ -1,3 +1,24 @@
+mixin page-header(args)
+  .page-header.d-print-none
+    .container-xl
+      .row.g-2.align-items-center 
+        .col 
+          h2.page-title= args.title
+
+          if args.description
+            .text-muted.mt-1= args.description
+
+        if args.action
+          .col-auto.ms-auto.d-print-none
+            .d-flex
+              a(href=args.action.url).btn.btn-primary
+                svg(xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M12 5l0 14")
+                  path(d="M5 12l14 0")
+
+                | #{args.action.text}
+
 block variables
 
 doctype html
@@ -7,8 +28,7 @@ html(lang="en")
     include ../includes/admin/header.pug
 
     .page-wrapper
-      .page-body
-        block body
+      block body
 
       include ../includes/admin/footer.pug
 

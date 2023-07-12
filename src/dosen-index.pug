@@ -1,20 +1,88 @@
 extends layouts/admin.pug
 
-block append variables 
-  - var pageId = "dosen";
+mixin item(data)
+  tr
+    td(data-label="Nama")
+      .d-flex.py-1.align-items-center
+        span.avatar.me-2= data.initial
+
+        .flex-fill
+          .font-weight-medium= data.name
+
+          .text-muted
+            a(href="mailto:" + data.email).text-reset= data.email
+
+    td(data-label="Bidang Keahlian")
+      .text-muted= data.skill
+
+    td
+      .btn-list.flex-nowrap
+        a(href="./dosen-edit.pug").btn Ubah
+
+        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
+
+block append variables
+  -
+    var pageId = "dosen";
+    var items = [
+      {initial: "A", name: "ARIF AKBARUL HUDA, S.SI., M.ENG.", email: "arif.akbarul@amikom.ac.id", skill: "AI for Music, Software Architecture"},
+      {initial: "B", name: "BAYU SETIAJI, M. KOM.", email: "bayusetiaji@amikom.ac.id", skill: "AI, Game"},
+      {initial: "A", name: "ARIFIYANTO HADINEGORO, S. KOM., M. T.", email: "arifiyanto@amikom.ac.id", skill: "Soft Computing"},
+      {initial: "W", name: "WINDHA MEGA PRADNYA DHUHITA, M. KOM.", email: "informatika@amikom.ac.id", skill: "Machine Learning"},
+      {initial: "A", name: "ARIF DWI LAKSITO, M. KOM.", email: "arif.laksito@amikom.ac.id", skill: "Natural Language Processing"},
+      {initial: "U", name: "UYOCK ANGGORO SAPUTRO, M. KOM.", email: "uyock@amikom.ac.id", skill: "Internet of Things"}
+    ];
 
 block append head
   title Kelola Dosen
 
 block body
-  .container-xl.d-flex.flex-column.justify-content-center
-    .empty 
-      .empty-img
-        img(
-          src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Primer%20-%20Vertical.svg"
-          height="128"
-          alt="AMIKOM"
-        )
+  +page-header({title: "Kelola Dosen", description: "6 dari 36 dosen", action: {url: "./dosen-add.pug", text: "Tambah dosen"}})
 
-      p.empty-title Selamat Datang 
-      p.empty-subtitle.text-muted Ini adalah halaman awal dashboard admin untuk mengelola data RPS
+  .page-body
+    .container-xl
+      .row.row-cards
+        .col-12
+          .card
+            .table-responsive
+              table.table.table-vcenter.table-mobile-md.card-table
+                thead
+                  tr
+                    th Nama
+
+                    th Bidang Keahlian
+
+                    th.w-1
+
+                tbody
+                  each data in items
+                    +item(data)
+
+block append body:scripts
+  div(tabindex="-1")#delete-modal.modal
+    div(role="document").modal-dialog.modal-sm
+      .modal-content
+        button(type="button" data-bs-dismiss="modal" aria-label="Tutup").btn-close
+
+        .modal-status.bg-danger 
+
+        .modal-body.text-center.py-4
+          svg(xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+            path(stroke="none" d="M0 0h24v24H0z" fill="none")
+
+            path(d="M12 9v2m0 4v.01")
+
+            path(d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75")
+
+          h3 Apakah anda yakin?
+
+          .text-muted Apakah anda benar-benar ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan
+
+        .modal-footer
+          .w-100 
+            .row 
+              .col 
+                a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
+
+              .col
+                a(href="./dosen-index.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus

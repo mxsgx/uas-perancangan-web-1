@@ -46,8 +46,8 @@ header.navbar-expand-md
     .navbar 
       .container-xl 
         ul.navbar-nav 
-          li.nav-item 
-            a(href="./index.pug").nav-link
+          li(class=`${pageId === "dashboard" ? "active" : ""}`).nav-item
+            a(href="./dashboard.pug").nav-link
               span.nav-link-icon.d-md-none.d-lg-inline-block
                 svg(
                   xmlns="http://www.w3.org/2000/svg"
