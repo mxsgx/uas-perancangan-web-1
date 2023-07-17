@@ -101,15 +101,13 @@ block body
                   path(stroke="none" d="M0 0h24v24H0z" fill="none")
                   path(d="M9 6l6 6l-6 6")
 
-
-
 block append body:scripts
   div(tabindex="-1")#delete-modal.modal
     div(role="document").modal-dialog.modal-sm
       .modal-content
         button(type="button" data-bs-dismiss="modal" aria-label="Tutup").btn-close
 
-        .modal-status.bg-danger 
+        .modal-status.bg-danger
 
         .modal-body.text-center.py-4
           svg(xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
@@ -124,9 +122,9 @@ block append body:scripts
           .text-muted Apakah anda benar-benar ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan
 
         .modal-footer
-          .w-100 
-            .row 
-              .col 
+          .w-100
+            .row
+              .col
                 a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
 
               .col

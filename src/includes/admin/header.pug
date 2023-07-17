@@ -1,4 +1,4 @@
-header.navbar.navbar-expand-md.d-print-none 
+header.navbar.navbar-expand-md.d-print-none
   .container-xl
     button(
       type="button"
@@ -20,7 +20,7 @@ header.navbar.navbar-expand-md.d-print-none
         ).navbar-brand-image
 
     .navbar-nav.flex-row.order-md-last
-      .nav-item.dropdown 
+      .nav-item.dropdown
         a(
           href="#"
           data-bs-toggle="dropdown"
@@ -29,23 +29,23 @@ header.navbar.navbar-expand-md.d-print-none
           span.avatar.avatar-sm A
 
           .d-none.d-xl-block.ps-2
-            div Admin 
-            .mt-1.small.text-muted Administrator 
+            div Admin
+            .mt-1.small.text-muted Administrator
 
-        .dropdown-menu.dropdown-menu-end.dropdown-menu.arrow 
-          a(href="./profile.pug").dropdown-item Profile 
+        .dropdown-menu.dropdown-menu-end.dropdown-menu.arrow
+          a(href="./profile.pug").dropdown-item Profile
 
-          .dropdown-divider 
+          .dropdown-divider
 
-          a(href="./settings.pug").dropdown-item Pengaturan 
+          a(href="./settings.pug").dropdown-item Pengaturan
 
           a(href="./sign-in.pug").dropdown-item Keluar
 
 header.navbar-expand-md
   #navbar-menu.collapse.navbar-collapse
-    .navbar 
-      .container-xl 
-        ul.navbar-nav 
+    .navbar
+      .container-xl
+        ul.navbar-nav
           li(class=`${pageId === "dashboard" ? "active" : ""}`).nav-item
             a(href="./dashboard.pug").nav-link
               span.nav-link-icon.d-md-none.d-lg-inline-block
@@ -93,7 +93,7 @@ header.navbar-expand-md
 
               span.nav-link-title Dosen
 
-          li(class=`${pageId === "mata-kuliah" ? "active" : ""}`).nav-item 
+          li(class=`${pageId === "mata-kuliah" ? "active" : ""}`).nav-item
             a(href="./mata-kuliah-index.pug").nav-link
               span.nav-link-icon.d-md-none.d-lg-inline-block
                 svg(xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
@@ -103,7 +103,7 @@ header.navbar-expand-md
 
               span.nav-link-title Mata Kuliah
 
-          li(class=`${pageId === "rps" ? "active" : ""}`).nav-item 
+          li(class=`${pageId === "rps" ? "active" : ""}`).nav-item
             a(href="./rps-index.pug").nav-link
               span.nav-link-icon.d-md-none.d-lg-inline-block
                 svg(
@@ -129,10 +129,10 @@ header.navbar-expand-md
 
               span.nav-link-title RPS
 
-        .my-2.my-md-0.flex-grow-1.flex-md-grow-0.order-first.order-md-last 
+        .my-2.my-md-0.flex-grow-1.flex-md-grow-0.order-first.order-md-last
           form(action="./dashboard.html" method="get" autocomplete="off" novalidate).px-2
-            .input-icon 
-              span.input-icon-addon 
+            .input-icon
+              span.input-icon-addon
                 svg(
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon"
