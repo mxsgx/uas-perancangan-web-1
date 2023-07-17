@@ -1,0 +1,20 @@
+extends layouts/admin.pug
+
+block append variables
+  - var pageId = "mata-kuliah"
+
+block append head
+  title Kelola Mata Kuliah
+
+block body
+  .container-xl.d-flex.flex-column.justify-content-center
+    .empty 
+      .empty-img
+        img(
+          src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Primer%20-%20Vertical.svg"
+          height="128"
+          alt="AMIKOM"
+        )
+
+      p.empty-title Selamat Datang 
+      p.empty-subtitle.text-muted Ini adalah halaman awal dashboard admin untuk mengelola data RPS

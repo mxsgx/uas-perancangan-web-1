@@ -1,7 +1,7 @@
 {
   "name": "uas-perancangan-web",
   "scripts": {
-    "start": "parcel ./src/*.pug",
+    "dev": "parcel ./src/*.pug",
     "build": "parcel build --public-url ./ --no-optimize ./src/*.pug"
   },
   "author": "Masga Satria Wirawan",

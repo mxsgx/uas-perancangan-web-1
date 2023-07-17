@@ -1,20 +1,125 @@
 extends layouts/admin.pug
 
+mixin item(data)
+  tr
+    td(data-label="Semester")= data.semester
+
+    td(data-label="Periode")
+      .text-muted= data.period
+
+    td
+      .btn-list.flex-nowrap
+        a(href="./semester-edit.pug").btn Ubah
+
+        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
+
 block append variables
-  - var pageId = "semester"
+  -
+    var pageId = "semester";
+    var items = [
+      {semester: '1', period: '2022/2023'},
+      {semester: '2', period: '2022/2023'},
+      {semester: '3', period: '2022/2023'},
+      {semester: '4', period: '2022/2023'},
+      {semester: '5', period: '2022/2023'},
+      {semester: '6', period: '2022/2023'},
+    ];
 
 block append head
   title Kelola Semester
 
 block body
-  .container-xl.d-flex.flex-column.justify-content-center
-    .empty 
-      .empty-img
-        img(
-          src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Primer%20-%20Vertical.svg"
-          height="128"
-          alt="AMIKOM"
-        )
-      
-      p.empty-title Selamat Datang 
-      p.empty-subtitle.text-muted Ini adalah halaman awal dashboard admin untuk mengelola data RPS
+  +page-header({title: "Kelola Semester", description: "6 dari 36 semester", action: {url: "./semester-add.pug", text: "Tambah semester"}})
+
+  .page-body
+    .container-xl
+      .row.row-cards
+        .col-12
+          .card
+            .table-responsive
+              table.table.table-vcenter.table-mobile-md.card-table
+                thead
+                  tr
+                    th Semester
+
+                    th Periode
+
+                    th.w-1
+
+                tbody
+                  each data in items
+                    +item(data)
+
+        .col-12.d-flex.justify-content-center.align-items-center
+          ul.pagination
+            li.page-item.disabled
+              a(href="#" tabindex="-1" aria-disabled="true").page-link
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M15 6l-6 6l6 6")
+
+            li.page-item: a(href="#").page-link 1
+            li.page-item: a(href="#").page-link 2
+            li.page-item: a(href="#").page-link 3
+            li.page-item: a(href="#").page-link 4
+            li.page-item: a(href="#").page-link 5
+            li.page-item: a(href="#").page-link 6
+
+            li.page-item
+              a(href="#" tabindex="-1" aria-disabled="true").page-link
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M9 6l6 6l-6 6")
+
+
+
+block append body:scripts
+  div(tabindex="-1")#delete-modal.modal
+    div(role="document").modal-dialog.modal-sm
+      .modal-content
+        button(type="button" data-bs-dismiss="modal" aria-label="Tutup").btn-close
+
+        .modal-status.bg-danger 
+
+        .modal-body.text-center.py-4
+          svg(xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+            path(stroke="none" d="M0 0h24v24H0z" fill="none")
+
+            path(d="M12 9v2m0 4v.01")
+
+            path(d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75")
+
+          h3 Apakah anda yakin?
+
+          .text-muted Apakah anda benar-benar ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan
+
+        .modal-footer
+          .w-100 
+            .row 
+              .col 
+                a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
+
+              .col
+                a(href="./semester-index.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus

@@ -1,0 +1,99 @@
+extends layouts/admin.pug
+
+mixin item(data)
+  tr
+    td(data-label="Nama")
+      .d-flex.py-1.align-items-center
+        span.avatar.me-2= data.initial
+
+        .flex-fill
+          .font-weight-medium= data.name
+
+          .text-muted
+            a(href="mailto:" + data.email).text-reset= data.email
+
+    td(data-label="Bidang Keahlian")
+      .text-muted= data.skill
+
+    td
+      .btn-list.flex-nowrap
+        a(href="./dosen-edit.pug").btn Ubah
+
+        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
+
+block append variables
+  - var pageId = "dosen";
+
+block append head
+  title Ubah John Doe
+
+block body
+  +page-header({title: "Ubah John Doe"})
+
+  .page-body
+    .container-xl
+      .row.row-cards.justify-content-center
+        .col-12
+          form(action="./dosen-edit.html" method="get").card
+            .card-body.py-6
+              .row.border-bottom.mb-6
+                .col-12.col-lg-4.col-md-6.mb-4
+                  p.fw-bold.h3.mb-1 Profil
+                  p.text-muted Informasi yang akan ditampilkan publik
+
+                .col-12.col-lg-8.col-md-6.row.mb-4
+                  .col-12.col-lg-8.col-md-6.mb-4
+                    label(for="name").form-label.required Nama
+                    input(type="text" value="John Doe")#name.form-control
+
+                  .col-12.col-lg-4.col-md-6.mb-4
+                    label(for="title").form-label Gelar
+                    input(type="text" value="S. KOM.")#title.form-control
+
+                  .col-12.mb-4
+                    .col-12.col-lg-8
+                      label(for="email").form-label.required Email
+                      input(type="email" value="john.doe@example.com")#email.form-control
+
+                  .col-12.mb-4
+                    .col-12.col-lg-10
+                      label(for="field").form-label Bidang Keahlian
+                      textarea(rows="5")#field.form-control AI, System Analyst
+
+                  .col-12.mb-4
+                    .col-12.col-lg-10
+                      .row
+                        .col-auto
+                          span.avatar.avatar-md
+                            svg(xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="40" height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+                              path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                              path(d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0")
+                              path(d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0")
+                              path(d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855")
+
+                        .col
+                          label(for="profile").form-label Foto Profil
+                          input(type="file")#profile.form-control
+
+              .row
+                .col-12.col-lg-4.col-md-6
+                  p.fw-bold.h3.mb-1 Sosial Media
+                  p.text-muted Tautkan sosial media
+
+                .col-12.col-lg-8.col-md-6.row
+                  .col-12.col-lg-7.mb-4
+                    label(for="facebook").form-label Facebook
+                    input(type="url" value="https://facebook.com/john.doe")#facebook.form-control
+
+                  .col-12.col-lg-7.mb-4
+                    label(for="twitter").form-label Twitter
+                    input(type="url" value="https://twitter.com/john_doe")#twitter.form-control
+
+                  .col-12.col-lg-7.mb-4
+                    label(for="instagram").form-label Instagram
+                    input(type="url" value="https://instagram.com/john.doe")#instagram.form-control
+
+            .card-footer
+              .row.align-items-center.justify-content-end
+                .col-auto
+                  button(type="submit").btn.btn-primary Tambah
