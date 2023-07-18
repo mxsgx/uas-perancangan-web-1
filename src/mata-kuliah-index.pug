@@ -1,20 +1,135 @@
 extends layouts/admin.pug
 
+mixin item(data)
+  tr
+    td(data-label="Kode")
+      .text-muted= data.code
+
+    td(data-label="Mata Kuliah")
+      .d-flex.py-1.align-items-center
+        .flex-fill
+          .font-weight-medium= data.name
+
+          .text-muted= data.enName
+
+    td(data-label="Dosen Pengampu")
+      .avatar-list.avatar-list-stacked.py-1
+        each lecturer in data.lecturers
+          span.avatar= lecturer
+
+    td
+      .btn-list.flex-nowrap
+        a(href="./mata-kuliah-edit.pug").btn Ubah
+
+        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
+
 block append variables
-  - var pageId = "mata-kuliah"
+  -
+    var pageId = "mata-kuliah";
+    var items = [
+      {code: "DT001", name: "LINGKUNGAN BISNIS", enName: "BUSINESS ENVIRONMENT", lecturers: ["A", "J", "K", "L"]},
+      {code: "DT002", name: "BAHASA INGGRIS II", enName: "ENGLISH II", lecturers: ["B", "M", "N"]},
+      {code: "DT003", name: "PERANCANGAN WEB I", enName: "WEB DESIGN I", lecturers: ["C", "D", "O"]},
+      {code: "DT004", name: "JARINGAN KOMPUTER I", enName: "COMPUTER NETWORK I", lecturers: ["E", "F", "P"]},
+      {code: "DT005", name: "DESAIN GRAFIS", enName: "GRAPHICAL DESIGN", lecturers: ["G", "H"]},
+      {code: "DT006", name: "PENDIDIKAN KEWARGANEGARAAN", enName: "CIVIL EDUCATION", lecturers: ["I", "Q", "R", "S"]}
+    ];
 
 block append head
   title Kelola Mata Kuliah
 
 block body
-  .container-xl.d-flex.flex-column.justify-content-center
-    .empty
-      .empty-img
-        img(
-          src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Primer%20-%20Vertical.svg"
-          height="128"
-          alt="AMIKOM"
-        )
+  +page-header({title: "Kelola Mata Kuliah", description: "6 dari 36 mata kuliah", action: {url: "./mata-kuliah-add.pug", text: "Tambah mata kuliah"}})
 
-      p.empty-title Selamat Datang
-      p.empty-subtitle.text-muted Ini adalah halaman awal dashboard admin untuk mengelola data RPS
+  .page-body
+    .container-xl
+      .row.row-cards
+        .col-12
+          .card
+            .table-responsive
+              table.table.table-vcenter.table-mobile-md.card-table
+                thead
+                  tr
+                    th Kode
+
+                    th Mata Kuliah
+
+                    th Dosen Pengampu
+
+                    th.w-1
+
+                tbody
+                  each data in items
+                    +item(data)
+
+        .col-12.d-flex.justify-content-center.align-items-center
+          ul.pagination
+            li.page-item.disabled
+              a(href="#" tabindex="-1" aria-disabled="true").page-link
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M15 6l-6 6l6 6")
+
+            li.page-item: a(href="#").page-link 1
+            li.page-item: a(href="#").page-link 2
+            li.page-item: a(href="#").page-link 3
+            li.page-item: a(href="#").page-link 4
+            li.page-item: a(href="#").page-link 5
+            li.page-item: a(href="#").page-link 6
+
+            li.page-item
+              a(href="#" tabindex="-1" aria-disabled="true").page-link
+                svg(
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                )
+                  path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                  path(d="M9 6l6 6l-6 6")
+
+block append body:scripts
+  div(tabindex="-1")#delete-modal.modal
+    div(role="document").modal-dialog.modal-sm
+      .modal-content
+        button(type="button" data-bs-dismiss="modal" aria-label="Tutup").btn-close
+
+        .modal-status.bg-danger
+
+        .modal-body.text-center.py-4
+          svg(xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+            path(stroke="none" d="M0 0h24v24H0z" fill="none")
+
+            path(d="M12 9v2m0 4v.01")
+
+            path(d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75")
+
+          h3 Apakah anda yakin?
+
+          .text-muted Apakah anda benar-benar ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan
+
+        .modal-footer
+          .w-100
+            .row
+              .col
+                a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
+
+              .col
+                a(href="./mata-kuliah-index.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus

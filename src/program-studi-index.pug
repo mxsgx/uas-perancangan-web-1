@@ -2,34 +2,42 @@ extends layouts/admin.pug
 
 mixin item(data)
   tr
-    td(data-label="Semester")= data.semester
+    td(data-label="Jenjang Pend.")
+      .text-muted= data.level
 
-    td(data-label="Periode")
-      .text-muted= data.period
+    td(data-label="Program Studi")
+      .d-flex.py-1.align-items-center
+        .flex-fill
+          .font-weight-medium= data.name
+
+          .text-muted= data.enName
+
+    td(data-label="Fakultas")
+      .text-muted= data.faculty
 
     td
       .btn-list.flex-nowrap
-        a(href="./semester-edit.pug").btn Ubah
+        a(href="./program-studi-edit.pug").btn Ubah
 
         button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
 
 block append variables
   -
-    var pageId = "semester";
+    var pageId = "program-studi";
     var items = [
-      {semester: '1', period: '2022/2023'},
-      {semester: '2', period: '2022/2023'},
-      {semester: '3', period: '2022/2023'},
-      {semester: '4', period: '2022/2023'},
-      {semester: '5', period: '2022/2023'},
-      {semester: '6', period: '2022/2023'},
+      {level: "S1", name: "ILMU KOMPUTER", enName: "COMPUTER SCIENCE", faculty: "ILMU KOMPUTER"},
+      {level: "S1", name: "ILMU KOMUNIKASI", enName: "COMMUNICATION SCIENCE", faculty: "EKONOMI DAN SOSIAL"},
+      {level: "S1", name: "INFORMATIKA", enName: "INFORMATICS", faculty: "ILMU KOMPUTER"},
+      {level: "D3", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", faculty: "ILMU KOMPUTER"},
+      {level: "D3", name: "MANAJEMEN INFORMATIKA", enName: "INFORMATICS MANAGEMENT", faculty: "ILMU KOMPUTER"},
+      {level: "S1", name: "SISTEM INFORMASI", enName: "INFORMATION SYSTEM", faculty: "ILMU KOMPUTER"}
     ];
 
 block append head
-  title Kelola Semester
+  title Kelola Program Studi
 
 block body
-  +page-header({title: "Kelola Semester", description: "6 dari 36 semester", action: {url: "./semester-add.pug", text: "Tambah semester"}})
+  +page-header({title: "Kelola Program Studi", description: "6 dari 16 program studi", action: {url: "./program-studi-add.pug", text: "Tambah program studi"}})
 
   .page-body
     .container-xl
@@ -40,9 +48,11 @@ block body
               table.table.table-vcenter.table-mobile-md.card-table
                 thead
                   tr
-                    th Semester
+                    th Jenjang Pend.
 
-                    th Periode
+                    th Program Studi
+
+                    th Fakultas
 
                     th.w-1
 
@@ -72,9 +82,6 @@ block body
             li.page-item: a(href="#").page-link 1
             li.page-item: a(href="#").page-link 2
             li.page-item: a(href="#").page-link 3
-            li.page-item: a(href="#").page-link 4
-            li.page-item: a(href="#").page-link 5
-            li.page-item: a(href="#").page-link 6
 
             li.page-item
               a(href="#" tabindex="-1" aria-disabled="true").page-link
@@ -92,8 +99,6 @@ block body
                 )
                   path(stroke="none" d="M0 0h24v24H0z" fill="none")
                   path(d="M9 6l6 6l-6 6")
-
-
 
 block append body:scripts
   div(tabindex="-1")#delete-modal.modal
@@ -122,4 +127,4 @@ block append body:scripts
                 a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
 
               .col
-                a(href="./semester-index.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus
+                a(href="./mata-kuliah-index.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus
