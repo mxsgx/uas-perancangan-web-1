@@ -1,0 +1,72 @@
+extends layouts/admin.pug
+
+block append variables
+  - var pageId = "mata-kuliah";
+
+block append head
+  title Ubah Mata Kuliah "Perancangan Web"
+
+block body
+  +page-header({title: "Ubah Mata Kuliah \"Perancangan Web\""})
+
+  .page-body
+    .container-xl
+      .row.row-cards.justify-content-center
+        .col-12
+          form(action="./mata-kuliah-edit.html" method="get").card
+            .card-body.py-6
+              .row
+                .col-12.col-lg-4.col-md-6.mb-4
+                  p.fw-bold.h3.mb-1 Umum
+                  p.text-muted Data informasi mata kuliah
+
+                .col-12.col-lg-8.col-md-6.row.mb-4
+                  .col-12.col-lg-4.col-md-6.mb-4
+                    label(for="code").form-label.required Kode
+                    input(type="text" value="DT001")#code.form-control
+
+                  .col-12.col-lg-8.col-md-6.mb-4
+                    label(for="name").form-label.required Nama
+                    input(type="text" value="Perancangan Web")#name.form-control
+
+                  .col-12.mb-4
+                    .col-12.col-lg-10
+                      label(for="lecturers").form-label.required Dosen Pengampu
+                      select(multiple)#lecturers.form-select
+                        option(value="1" data-custom-properties=`<span class="avatar avatar-xs">A</span>` selected) AHLIHI MASRURI M.KOM.
+                        option(value="2" data-custom-properties=`<span class="avatar avatar-xs">A</span>` selected) ARIF AKBARUL HUDA, S.SI., M.ENG.
+                        option(value="3" data-custom-properties=`<span class="avatar avatar-xs">A</span>`) ARIFIYANTO HADINEGORO, S.KOM., M.T.
+                        option(value="4" data-custom-properties=`<span class="avatar avatar-xs">A</span>`) ARIF DWI LAKSITO, M.KOM.
+                        option(value="5" data-custom-properties=`<span class="avatar avatar-xs">B</span>`) BAYU SETIAJI, M. KOM.
+
+            .card-footer
+              .row.align-items-center.justify-content-end
+                .col-auto
+                  a(href="./mata-kuliah-index.pug").btn.btn-outline-normal Batalkan
+                .col-auto
+                  button(type="submit").btn.btn-primary Simpan
+
+block append body:scripts
+  script(src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js")
+  script.
+    document.addEventListener("DOMContentLoaded", function () {
+      window.TomSelect && Array.from(document.querySelectorAll('#lecturers')).forEach(el => (new TomSelect(el, {
+        copyClassesToDropdown: false,
+        dropdownParent: 'body',
+        controlInput: '<input>',
+        render:{
+          item: function(data, escape) {
+            if (data.customProperties) {
+              return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+            }
+            return '<div>' + escape(data.text) + '</div>';
+          },
+          option: function(data, escape) {
+            if (data.customProperties) {
+              return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+            }
+            return '<div>' + escape(data.text) + '</div>';
+          },
+        },
+      })));
+    });

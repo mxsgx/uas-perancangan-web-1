@@ -1,0 +1,85 @@
+extends layouts/admin.pug
+
+block append variables
+  - var pageId = "program-studi";
+
+block append head
+  title Tambah Program Studi
+
+block body
+  +page-header({title: "Tambah Program Studi"})
+
+  .page-body
+    .container-xl
+      .row.row-cards.justify-content-center
+        .col-12
+          form(action="./program-studi-edit.html" method="get").card
+            .card-body.py-6
+              .row.border-bottom.mb-6
+                .col-12.col-lg-4.col-md-6.mb-4
+                  p.fw-bold.h3.mb-1 Umum
+                  p.text-muted Data informasi program studi
+
+                .col-12.col-lg-8.col-md-6.row.mb-4
+                  .col-12.col-lg-5.col-md-6.mb-4
+                    label(for="level").form-label Jenjang
+                    select#level.form-select
+                      option(value="d3") D3
+                      option(value="s1") S1
+                      option(value="s2") S2
+
+                  .col-12.col-lg-7.col-md-6.mb-4
+                    label(for="name").form-label.required Nama
+                    input(type="text")#name.form-control
+
+                  .col-12.mb-4
+                    .col-12.col-lg-8
+                      label(for="faculty").form-label Fakultas
+                      select#faculty.form-select
+                        option(value="ilmu-komputer") Ilmu Komputer
+                        option(value="ekonomi-dan-sosial") Ekonomi dan Sosial
+                        option(value="sains-dan-teknologi") Sains dan Teknologi
+
+              .row
+                .col-12.col-lg-4.col-md-6
+                  p.fw-bold.h3.mb-1 Situs dan Sosial Media
+                  p.text-muted Tautan situs dan sosial media
+
+                .col-12.col-lg-8.col-md-6.row
+                  .col-12.col-lg-7.mb-4
+                    label(for="website").form-label Website
+                    input(type="url")#website.form-control
+
+                  .col-12.col-lg-7.mb-4
+                    label(for="instagram").form-label Instagram
+                    input(type="url")#instagram.form-control
+
+            .card-footer
+              .row.align-items-center.justify-content-end
+                .col-auto
+                  button(type="submit").btn.btn-primary Tambah
+
+block append body:scripts
+  script(src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js")
+  script.
+    document.addEventListener("DOMContentLoaded", function () {
+      window.TomSelect && Array.from(document.querySelectorAll('#level, #faculty')).forEach(el => (new TomSelect(el, {
+        copyClassesToDropdown: false,
+        dropdownParent: 'body',
+        controlInput: '<input>',
+        render:{
+          item: function(data, escape) {
+            if (data.customProperties) {
+              return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+            }
+            return '<div>' + escape(data.text) + '</div>';
+          },
+          option: function(data, escape) {
+            if (data.customProperties) {
+              return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+            }
+            return '<div>' + escape(data.text) + '</div>';
+          },
+        },
+      })));
+    });

@@ -1,26 +1,5 @@
 extends layouts/admin.pug
 
-mixin item(data)
-  tr
-    td(data-label="Nama")
-      .d-flex.py-1.align-items-center
-        span.avatar.me-2= data.initial
-
-        .flex-fill
-          .font-weight-medium= data.name
-
-          .text-muted
-            a(href="mailto:" + data.email).text-reset= data.email
-
-    td(data-label="Bidang Keahlian")
-      .text-muted= data.skill
-
-    td
-      .btn-list.flex-nowrap
-        a(href="./dosen-edit.pug").btn Ubah
-
-        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-outline-danger Hapus
-
 block append variables
   - var pageId = "dosen";
 
