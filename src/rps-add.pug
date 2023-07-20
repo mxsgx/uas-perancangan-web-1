@@ -1,7 +1,26 @@
 extends layouts/admin.pug
 
+mixin item(data)
+  tr
+    td= data.name
+    td= data.sks
+    td= data.type.join(", ")
+    td
+      a(href="#") Unduh
+    td
+      .btn-list.flex-nowrap
+        button(type="button").btn.btn-sm Ubah
+
+        button(type="button" data-bs-toggle="modal" data-bs-target="#delete-modal").btn.btn-sm.btn-outline-danger Hapus
+
 block append variables
-  - var pageId = "rps";
+  -
+    var pageId = "rps";
+    var items = [
+      {name: "LINGKUNGAN BISNIS", sks: 2, type: ["Teori"]},
+      {name: "PERANCANGAN WEB 1", sks: 4, type: ["Teori", "Praktikum"]},
+      {name: "ALGORITMA DAN PEMROGRAMAN", sks: 4, type: ["Teori", "Praktikum"]}
+    ]
 
 block append head
   title Tambah RPS
@@ -15,7 +34,7 @@ block body
         .col-12
           form(action="./rps-edit.html" method="get").card
             .card-body.py-6
-              .row
+              .row.border-bottom.mb-6
                 .col-12.col-lg-4.col-md-6.mb-4
                   p.fw-bold.h3.mb-1 Umum
                   p.text-muted Data informasi RPS
@@ -51,16 +70,88 @@ block body
                       span.input-group-text /
                       input(type="text")#end-year.form-control
 
+              .row
+                .col-12
+                  p.fw-bold.h3.mb-1 RPS
+                  p.text-muted Kelola RPS
+
+                .col-12
+                  .table-responsive
+                    table.table.mb-0
+                      thead
+                        tr
+                          th Mata Kuliah
+                          th(style="min-width: 4rem") SKS
+                          th Jenis
+                          th Dokumen
+                          th.w-1
+
+                      tbody
+                        each data in items
+                          +item(data)
+
+                      tfoot
+                        tr
+                          td
+                            select#subject.form-select
+                              option(value="1") PENDIDIKAN PANCASILA
+                              option(value="2") DESAIN GRAFIS
+                              option(value="3") PENDIDIKAN AGAMA
+                              option(value="4") BAHASA INGGRIS II
+                              option(value="5") JARINGAN KOMPUTER I
+                          td
+                            input(type="number" min="2").form-control
+                          td
+                            .form-selectgroup.form-selectgroup-pills
+                              label.form-selectgroup-item
+                                input(type="checkbox" name="type").form-selectgroup-input
+                                span.form-selectgroup-label Teori
+                              label.form-selectgroup-item
+                                input(type="checkbox" name="type").form-selectgroup-input
+                                span.form-selectgroup-label Praktik
+                          td
+                            input(type="file").form-control
+                          td
+                            button(type="button").btn.btn-outline-primary Tambah
+
             .card-footer
               .row.align-items-center.justify-content-end
                 .col-auto
                   button(type="submit").btn.btn-primary Tambah
 
 block append body:scripts
+  div(tabindex="-1")#delete-modal.modal
+    div(role="document").modal-dialog.modal-sm
+      .modal-content
+        button(type="button" data-bs-dismiss="modal" aria-label="Tutup").btn-close
+
+        .modal-status.bg-danger
+
+        .modal-body.text-center.py-4
+          svg(xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round")
+            path(stroke="none" d="M0 0h24v24H0z" fill="none")
+
+            path(d="M12 9v2m0 4v.01")
+
+            path(d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75")
+
+          h3 Apakah anda yakin?
+
+          .text-muted Apakah anda benar-benar ingin menghapus data ini? Data yang dihapus tidak dapat dikembalikan
+
+        .modal-footer
+          .w-100
+            .row
+              .col
+                a(href="#" data-bs-dismiss="modal").btn.w-100 Batalkan
+
+              .col
+                a(href="./rps-add.pug" data-bs-dimiss="modal").btn.btn-danger.w-100 Hapus
+
   script(src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js")
   script.
     document.addEventListener("DOMContentLoaded", function () {
-      window.TomSelect && Array.from(document.querySelectorAll('#study')).forEach(el => (new TomSelect(el, {
+      window.TomSelect && Array.from(document.querySelectorAll('#study, #type')).forEach(el => (new TomSelect(el, {
         copyClassesToDropdown: false,
         dropdownParent: 'body',
         controlInput: '<input>',
