@@ -1,18 +1,133 @@
 extends layouts/default.pug
 
+mixin item(data)
+  tr
+    td(data-label="Program Studi")
+      .d-flex.py-1.align-items-center
+        .flex-fill
+          .font-weight-medium= data.name
+
+          .text-muted= data.enName
+
+    td(data-label="Thn. Ajaran")
+      .text-muted= data.period
+
+    td(data-label="Semester")
+      .text-muted= data.semester
+
+    td
+      .btn-list.flex-nowrap
+        a(href="./rps-view.pug").btn Lihat
+
+block append variables
+  -
+    var items = [
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 1},
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 2},
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 3},
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 4},
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 5},
+      {period: "2022/2023", name: "TEKNIK INFORMATIKA", enName: "INFORMATICS ENGINEERING", semester: 6}
+    ];
+
 block append head
-  title Masuk - Website RPS
+  title Website RPS
 
 block body
-  .page.page-center
-    .container.container-normal.py-4
-      .row.align-items-center.g-4
-        .col-lg
-          .container-tight
-            .text-center.mb-4
-              a(href="./index.pug").navbar-brand.navbar-brand-autodark
-                img(
-                  src="https://home.amikom.ac.id/brandguideline/assets/download/Logo%20Universitas%20Amikom%20Yogyakarta/svg/Logo%20Gram.svg"
-                  alt="AMIKOM"
-                  height="64"
-                )
+  +page-header({title: "Selamat datang di website RPS Amikom"})
+
+  .page-body
+    .container-xl
+      .card.mb-4
+        .card-header
+          h3.card-title Pencarian
+
+        .card-body
+          form.datagrid
+            .datagrid-item
+              label(for="faculty").datagrid-title Fakultas
+              .datagrid-content
+                select#faculty.form-select
+                  option(value="-") Semua
+                  option(value="1") Ilmu Komputer
+                  option(value="2") Sosial dan Ekonomi
+                  option(value="3") Sains dan Teknologi
+
+            .datagrid-item
+              label(for="level").datagrid-title Jenjang
+              .datagrid-content
+                select#level.form-select
+                  option(value="-") Semua
+                  option(value="1") D3
+                  option(value="2") S1
+
+            .datagrid-item
+              label(for="periode").datagrid-title Tahun Akademik
+              .datagrid-content
+                select#periode.form-select
+                  option(value="-") Semua
+                  option(value="2023/2024") 2023/2024
+                  option(value="2022/2023") 2022/2023
+
+            .datagrid-item
+              label(for="action").datagrid-title Aksi
+              .datagrid-content
+                button(type="submit").btn.btn-primary.me-2 Cari
+                button(type="reset").btn.btn-link Reset
+
+      .card.mb-4
+        .table-responsive
+          table.table.table-vcenter.table-mobile-md.card-table
+            thead
+              tr
+                th Program Studi
+
+                th Thn. Angkatan
+
+                th Semester
+
+                th.w-1
+
+            tbody
+              each data in items
+                +item(data)
+
+      .d-flex.justify-content-center.align-items-center
+        ul.pagination
+          li.page-item.disabled
+            a(href="#" tabindex="-1" aria-disabled="true").page-link
+              svg(
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              )
+                path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                path(d="M15 6l-6 6l6 6")
+
+          li.page-item: a(href="#").page-link 1
+          li.page-item: a(href="#").page-link 2
+          li.page-item: a(href="#").page-link 3
+
+          li.page-item
+            a(href="#" tabindex="-1" aria-disabled="true").page-link
+              svg(
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              )
+                path(stroke="none" d="M0 0h24v24H0z" fill="none")
+                path(d="M9 6l6 6l-6 6")

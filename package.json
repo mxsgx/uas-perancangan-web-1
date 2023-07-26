@@ -2,7 +2,7 @@
   "name": "uas-perancangan-web",
   "scripts": {
     "dev": "parcel ./src/*.pug",
-    "build": "parcel build --public-url ./ --no-optimize ./src/*.pug"
+    "build": "parcel build --public-url ./ ./src/*.pug"
   },
   "author": "Masga Satria Wirawan",
   "license": "MIT",

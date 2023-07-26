@@ -1,0 +1,73 @@
+extends layouts/default.pug
+
+mixin item(data)
+  tr
+    td(data-label="Mata Kuliah")
+      .d-flex.py-1.align-items-center
+        .flex-fill
+          .font-weight-medium= data.name
+
+    td(data-label="SKS")
+      .text-muted= data.sks
+
+    td(data-label="Jenis")
+      .text-muted= data.type.join(", ")
+
+    td
+      .btn-list.flex-nowrap
+        a(href="https://blogarch.amikom.ac.id/2022/0122/20220122095859.pdf").btn Dokumen RPS
+
+block append variables
+  -
+    var items = [
+      {name: "LINGKUNGAN BISNIS", sks: 2, type: ["Teori"]},
+      {name: "PERANCANGAN WEB 1", sks: 4, type: ["Teori", "Praktikum"]},
+      {name: "ALGORITMA DAN PEMROGRAMAN", sks: 4, type: ["Teori", "Praktikum"]}
+    ]
+
+block append head
+  title RPS D3 Teknik Informatika - Semester 1 - Tahun Akademik 2022/2023
+
+block body
+  +page-header({title: "RPS D3 Teknik Informatika"})
+
+  .page-body
+    .container-xl
+      .card.mb-4
+        .card-header
+          h3.card-title Detail
+
+        .card-body
+          form.datagrid
+            .datagrid-item
+              .datagrid-title Fakultas
+              .datagrid-content Ilmu Komputer
+
+            .datagrid-item
+              .datagrid-title Jenjang
+              .datagrid-content D3
+
+            .datagrid-item
+              .datagrid-title Semester
+              .datagrid-content 1
+
+            .datagrid-item
+              .datagrid-title Total SKS
+              .datagrid-content 22
+
+      .card
+        .table-responsive
+          table.table.table-vcenter.table-mobile-md.card-table
+            thead
+              tr
+                th Mata Kuliah
+
+                th SKS
+
+                th Jenis
+
+                th.w-1
+
+            tbody
+              each data in items
+                +item(data)
