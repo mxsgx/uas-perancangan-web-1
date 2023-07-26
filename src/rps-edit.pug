@@ -23,10 +23,10 @@ block append variables
     ]
 
 block append head
-  title Tambah RPS
+  title Ubah RPS "Semester 1"
 
 block body
-  +page-header({title: "Tambah RPS"})
+  +page-header({title: "Ubah RPS \"Semester 1\""})
 
   .page-body
     .container-xl
@@ -45,7 +45,7 @@ block body
                       label(for="study").form-label.required Program Studi
                       select#study.form-select
                         optgroup(label="Fakultas Ilmu Komputer")
-                          option(value="1") D3 Teknik Informatika
+                          option(value="1" selected) D3 Teknik Informatika
                           option(value="2") D3 Manajemen Informatika
                           option(value="3") S1 Informatika
                           option(value="4") S1 Ilmu Komputer
@@ -61,14 +61,14 @@ block body
 
                   .col-12.col-lg-4.col-md-4.mb-4
                     label(for="semester").form-label.required Semester
-                    input(type="number" min=1)#semester.form-control
+                    input(type="number" min="1" value="1")#semester.form-control
 
                   .col-12.col-lg-8.col-md-8.mb-4
                     label(for="start-year").form-label.required Tahun Angkatan
                     .input-group
-                      input(type="text")#start-year.form-control
+                      input(type="text" value="2022")#start-year.form-control
                       span.input-group-text /
-                      input(type="text")#end-year.form-control
+                      input(type="text" value="2023")#end-year.form-control
 
               .row
                 .col-12
@@ -117,7 +117,7 @@ block body
             .card-footer
               .row.align-items-center.justify-content-end
                 .col-auto
-                  button(type="submit").btn.btn-primary Tambah
+                  button(type="submit").btn.btn-primary Simpan
 
 block append body:scripts
   div(tabindex="-1")#delete-modal.modal
